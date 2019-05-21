@@ -18,7 +18,7 @@ class emaillog extends CI_Controller {
     }
 
     public function index() {
-        $log_list = $this->EmailLog_model->get_all_log();
+        $log_list = $this->emaillog_model->get_all_log();
 
         $data = array(
             'konten' => 'emaillog/log_list',

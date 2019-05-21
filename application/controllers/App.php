@@ -31,7 +31,8 @@ class app extends CI_Controller
             redirect('login/login');
         }
 
-        $group_list = $this->EmailGroup_model->get_all_group();
+        $group_list = $this->emailgroup_model->get_all_group();
+
 
         $data = array(
             'konten' => 'compose/compose_blast',
@@ -42,7 +43,7 @@ class app extends CI_Controller
     }
 
     public function emailsinglesend()
-    {   
+    {
         $this->form_validation->set_rules('receiver', 'Receiver', 'trim|required');
         $this->form_validation->set_rules('cc', 'Cc', 'trim');
         $this->form_validation->set_rules('bcc', 'Bcc', 'trim');
@@ -52,7 +53,7 @@ class app extends CI_Controller
         $this->form_validation->set_rules('sender_name', 'Sender Name', 'trim');
         $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
 
-        
+
         if ($this->form_validation->run() == false) {
             $this->index();
         } else {
@@ -65,7 +66,7 @@ class app extends CI_Controller
             $bcc = $this->input->post('bcc', true);
             $subject = $this->input->post('subject', true);
             $message = $this->input->post('htmleditor');
-            
+
 
             $receivers = explode(";", $this->input->post('receiver', true));
             $count_email = 0;
@@ -74,7 +75,7 @@ class app extends CI_Controller
                 $uuid = $uuid->uuid;
 
                 $message = $message.'<img src="'.base_url().'login/email_read/'.$uuid.'" width="1" height="1">';
-                
+
                 $this->email->set_newline("\r\n");
                 $this->email->from($from,$fromname);
                 $this->email->to($receiver);
@@ -88,8 +89,8 @@ class app extends CI_Controller
                 } else {
                     $status = "Send Failed :".show_error($this->email->print_debugger());
                 }
-                
-                
+
+
 
                 $data = array(
                     'uuid' => $uuid,
@@ -100,11 +101,11 @@ class app extends CI_Controller
                     'message' => $message,
                     'status' => $status,
                 );
-    
+
                 $this->app_model->insert_email_single($data);
                 $count_email++;
             }
-            
+
             $this->session->set_flashdata('flag', 'success');
             $this->session->set_flashdata('message', 'Success send to '.$count_email.' emails');
             redirect(site_url('app'));
@@ -112,7 +113,7 @@ class app extends CI_Controller
     }
 
     public function emailblastsend()
-    {   
+    {
         $this->form_validation->set_rules('group_email', 'Group Receiver', 'trim|required');
         $this->form_validation->set_rules('cc', 'Cc', 'trim');
         $this->form_validation->set_rules('bcc', 'Bcc', 'trim');
@@ -122,7 +123,7 @@ class app extends CI_Controller
         $this->form_validation->set_rules('sender_name', 'Sender Name', 'trim');
         $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
 
-        
+
         if ($this->form_validation->run() == false) {
             $this->blastemail();
         } else {
@@ -137,7 +138,7 @@ class app extends CI_Controller
             $message = $this->input->post('htmleditor');
             $group_id = $this->input->post('group_email', true);
 
-            $email_lists = $this->EmailGroup_model->get_group_detail_by_id($group_id);
+            $email_lists = $this->emailgroup_model->get_group_detail_by_id($group_id);
             $count_email = 0;
             foreach ($email_lists as $email_list) {
                 $receiver = $email_list->email;
@@ -170,11 +171,11 @@ class app extends CI_Controller
                     'message' => $message,
                     'status' => $status,
                 );
-    
+
                 $this->app_model->insert_email_single($data);
                 $count_email++;
             }
-            
+
             $this->session->set_flashdata('flag', 'success');
             $this->session->set_flashdata('message', 'Success send to '.$count_email.' emails');
             redirect(site_url('app/blastemail'));

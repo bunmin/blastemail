@@ -32,9 +32,9 @@
                                 <td><?php echo $groups->created_dt ?></td>
                                 <td style="text-align:center" width="200px">
                                 <a href="#" class="btn btn-sm btn-info" data-toggle="modal" data-target="#modal-default" onclick="load_detail('<?php echo $groups->uuid; ?>','<?php echo $groups->group_name ?>')">
-                                    <i class="fa fa-eye" title-"delete"></i>
+                                    <i class="fa fa-eye" title-"Detail"></i>
                                   </a>
-                                  <a href="EmailGroup/delete/<?php echo $groups->uuid?>" class="btn btn-sm btn-danger" onclick="javasciprt: return confirm('Are You Sure ?')">
+                                  <a href="emailgroup/delete/<?php echo $groups->uuid?>" class="btn btn-sm btn-danger" onclick="javasciprt: return confirm('Are You Sure ?')">
                                     <i class="fa fa-trash" title-"delete"></i>
                                   </a>
                                 </td>
