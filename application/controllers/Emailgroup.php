@@ -67,7 +67,13 @@ class emailgroup extends CI_Controller {
 
             $path = "upload/tmp/";
             if (!is_dir($path)) {
-                mkdir($path, 0777, TRUE);
+                if (is_writable($path)) {
+                    mkdir($path, 0777, TRUE);
+                } else {
+                    $this->session->set_flashdata('flag', 'danger');
+                    $this->session->set_flashdata('message', 'The upload destination folder does not appear to be writable.');
+                    redirect(site_url('emailgroup/create'));
+                }
             }
 
             $upload = $this->upload_file($uuid,$name_form,$path);
