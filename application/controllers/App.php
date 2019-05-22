@@ -75,8 +75,7 @@ class app extends CI_Controller
                 $uuid = $uuid->uuid;
 
                 $message = "";
-                // $message = $getmessage.'<img src="'.base_url().'login/email_read/'.$uuid.'" width="1" height="1">';
-                $message = $getmessage.'<link rel="stylesheet" href="'.base_url().'login/email_read/'.$uuid.'">';
+                $message = $getmessage.'<img src="'.base_url().'login/email_read/'.$uuid.'" width="1" height="1">';
 
                 $this->email->set_newline("\r\n");
                 $this->email->from($from,$fromname);
@@ -149,10 +148,8 @@ class app extends CI_Controller
                 $uuid = $this->db->query("SELECT uuid() uuid")->row();
                 $uuid = $uuid->uuid;
 
-                // $message = $message.'<img src="'.base_url().'login/email_read/'.$uuid.'" width="1" height="1">';
                 $message = "";
-                // $message = $getmessage.'<img src="'.base_url().'login/email_read/'.$uuid.'" width="1" height="1">';
-                // $message = $getmessage.'<link rel="stylesheet" href="'.base_url().'login/email_read/'.$uuid.'">';
+                $message = $getmessage.'<img src="'.base_url().'login/email_read/'.$uuid.'" width="1" height="1">';
 
                 $this->email->set_newline("\r\n");
                 $this->email->from($from,$fromname);
