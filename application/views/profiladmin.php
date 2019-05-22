@@ -1,7 +1,9 @@
 <?php if (strlen($this->session->flashdata('success')) > 0) {?>
 	<div class="alert alert-success alert-dismissible">
 		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-	  <?php echo $this->session->flashdata('success'); ?>
+		<?php echo $this->session->flashdata('success');
+					$this->session->unset_userdata('success');
+		?>
 	</div>
 <?php }?>
 <?php if (strlen(validation_errors()) > 0) {?>

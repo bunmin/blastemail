@@ -1,7 +1,10 @@
 <?php if (strlen($this->session->flashdata('message')) > 0) {?>
   <div class="alert alert-<?php echo $this->session->flashdata('flag'); ?> alert-dismissible">
     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-    <?php echo $this->session->flashdata('message'); ?>
+    <?php echo $this->session->flashdata('message');
+          $this->session->unset_userdata('flag');
+          $this->session->unset_userdata('message');
+    ?>
   </div>
 <?php }?>
 <!-- TABLE: LATEST ORDERS -->
