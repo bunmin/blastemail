@@ -66,6 +66,9 @@ class emailgroup extends CI_Controller {
             $uuid = $uuid->uuid;
 
             $path = "upload/tmp/";
+            if (!is_dir($path)) {
+                mkdir($path, 0777, TRUE);
+            }
 
             $upload = $this->upload_file($uuid,$name_form,$path);
             if($upload['result'] == "success"){

@@ -65,7 +65,7 @@ class app extends CI_Controller
             $cc = $this->input->post('cc', true);
             $bcc = $this->input->post('bcc', true);
             $subject = $this->input->post('subject', true);
-            $message = $this->input->post('htmleditor');
+            $getmessage = $this->input->post('htmleditor');
 
 
             $receivers = explode(";", $this->input->post('receiver', true));
@@ -74,7 +74,8 @@ class app extends CI_Controller
                 $uuid = $this->db->query("SELECT uuid() uuid")->row();
                 $uuid = $uuid->uuid;
 
-                $message = $message.'<img src="'.base_url().'login/email_read/'.$uuid.'" width="1" height="1">';
+                $message = "";
+                $message = $getmessage.'<img src="'.base_url().'login/email_read/'.$uuid.'" width="1" height="1">';
 
                 $this->email->set_newline("\r\n");
                 $this->email->from($from,$fromname);
@@ -135,18 +136,21 @@ class app extends CI_Controller
             $cc = $this->input->post('cc', true);
             $bcc = $this->input->post('bcc', true);
             $subject = $this->input->post('subject', true);
-            $message = $this->input->post('htmleditor');
+            $getmessage = $this->input->post('htmleditor');
             $group_id = $this->input->post('group_email', true);
 
             $email_lists = $this->emailgroup_model->get_group_detail_by_id($group_id);
             $count_email = 0;
             foreach ($email_lists as $email_list) {
+
                 $receiver = $email_list->email;
 
                 $uuid = $this->db->query("SELECT uuid() uuid")->row();
                 $uuid = $uuid->uuid;
 
-                $message = $message.'<img src="'.base_url().'login/email_read/'.$uuid.'" width="1" height="1">';
+                // $message = $message.'<img src="'.base_url().'login/email_read/'.$uuid.'" width="1" height="1">';
+                $message = "";
+                $message = $getmessage.'<img src="'.base_url().'login/email_read/'.$uuid.'" width="1" height="1">';
 
                 $this->email->set_newline("\r\n");
                 $this->email->from($from,$fromname);
