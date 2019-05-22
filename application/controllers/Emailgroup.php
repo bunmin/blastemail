@@ -23,7 +23,7 @@ class emailgroup extends CI_Controller {
 
         $data = array(
             'konten' => 'emailgroup/group_list',
-            'footerplus1' => 'emailgroup/modal',
+            'footerplus1' => 'emailgroup/include_js',
             'judul' => 'Email Group List',
             'group_data' => $group_list,
         );

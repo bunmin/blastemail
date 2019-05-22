@@ -53,4 +53,5 @@
               </div> -->
               <!-- /.box -->
               <div class="modal fade modal_show" id="modal-default">
+                    <?php include 'modal.php'; ?>
               </div>
