@@ -1,0 +1,1 @@
+Please remove this file after you done install this App.
