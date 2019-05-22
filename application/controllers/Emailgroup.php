@@ -37,7 +37,7 @@ class emailgroup extends CI_Controller {
         $data = array(
             'email_data' => $email_list,
         );
-        
+
         $this->load->view('emailgroup/modal', $data);
     }
 
@@ -52,7 +52,7 @@ class emailgroup extends CI_Controller {
     }
 
     public function create_action()
-    {   
+    {
         $name_form = "csv";
 
         $this->form_validation->set_rules('group_name', 'Group Name', 'trim|required|is_unique[email_group.group_name]');
@@ -84,7 +84,7 @@ class emailgroup extends CI_Controller {
                     if($numrow > 1){
                         $cellIterator = $row->getCellIterator();
                         $cellIterator->setIterateOnlyExistingCells(false);
-                        
+
                         $get = array();
                         foreach ($cellIterator as $cell) {
                             array_push($get, $cell->getValue());
@@ -110,7 +110,7 @@ class emailgroup extends CI_Controller {
                     );
 
                     $this->emailgroup_model->insert_group($data);
-                    
+
                     // Second : insert to detail of group
                     $this->emailgroup_model->insert_multiple_group_detail($data_dateil);
 
@@ -150,16 +150,16 @@ class emailgroup extends CI_Controller {
     }
 
     public function upload_file($filename,$name_form,$path){
-		$this->load->library('upload'); 
-		
+		$this->load->library('upload');
+
 		$config['upload_path'] = $path;
 		$config['allowed_types'] = 'csv';
 		// $config['max_size']	= '2048';
 		$config['overwrite'] = true;
 		$config['file_name'] = $filename;
-	
-		$this->upload->initialize($config); 
-		if($this->upload->do_upload($name_form)){ 
+
+		$this->upload->initialize($config);
+		if($this->upload->do_upload($name_form)){
 			$return = array('result' => 'success', 'file' => $this->upload->data(), 'error' => '');
 			return $return;
 		}else{
