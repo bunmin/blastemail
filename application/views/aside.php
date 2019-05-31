@@ -43,7 +43,7 @@
                           </a>
                         </li>
                         <li>
-                          <a href="#">
+                          <a href="protocolconfig">
                               <i class="fa fa-cog"></i> <span> Protocol Config</span>
                           </a>
                         </li>

@@ -9,7 +9,9 @@ class app extends CI_Controller
       $this->load->library('form_validation');
       $this->load->model('app_model');
       $this->load->model('emailgroup_model');
+      $this->load->model('protocolconfig_model');
       $this->load->helper('url');
+      $this->load->helper('cryptomd5');
 
       if ($this->session->userdata('username') == "") {
         redirect('login/login');
@@ -21,6 +23,7 @@ class app extends CI_Controller
         $data = array(
             'konten' => 'compose/compose_single',
             'judul' => 'Compose Single Email',
+            'footerplus1' => 'compose/include_js',
         );
         $this->load->view('v_index', $data);
     }
@@ -37,6 +40,7 @@ class app extends CI_Controller
         $data = array(
             'konten' => 'compose/compose_blast',
             'judul' => 'Compose Blast Email',
+            'footerplus1' => 'compose/include_js',
             'group_data' => $group_list,
         );
         $this->load->view('v_index', $data);
@@ -57,8 +61,8 @@ class app extends CI_Controller
         if ($this->form_validation->run() == false) {
             $this->index();
         } else {
-            $this->load->config('email');
-            $this->load->library('email');
+            $config = $this->email_config();
+            $this->load->library('email',$config);
 
             $from = $this->input->post('sender_email', true);
             $fromname = $this->input->post('sender_name', true);
@@ -128,8 +132,8 @@ class app extends CI_Controller
         if ($this->form_validation->run() == false) {
             $this->blastemail();
         } else {
-            $this->load->config('email');
-            $this->load->library('email');
+            $config = $this->email_config();
+            $this->load->library('email',$config);
 
             $from = $this->input->post('sender_email', true);
             $fromname = $this->input->post('sender_name', true);
@@ -259,9 +263,9 @@ class app extends CI_Controller
 
             if ($level == "admin") {
               $cek = $this->db->query("SELECT password FROM user where id_user='$id'")->row();
-              if ($cek->password == md5($pass_lama)) {
+              if ($cek->password == encrypt($pass_lama)) {
                   $data = array(
-                      'password' => md5($pass_baru)
+                      'password' => encrypt($pass_baru)
                   );
                   $this->db->where('id_user', $id);
                   $this->db->update('user', $data);
@@ -301,6 +305,39 @@ class app extends CI_Controller
             } else {
               return true;
             }
+        }
+    }
+
+    function email_config()
+    {
+        $enabled_protocol = $this->protocolconfig_model->get_protocol_enable();
+
+        $protocol = $enabled_protocol[0]->protocol;
+        if($protocol == "smtp") {
+            foreach ($enabled_protocol as $protocols) {
+                if($protocols->setting == "smtp_host"){$smtp_host = $protocols->value;};
+                if($protocols->setting == "smtp_port"){$smtp_port = $protocols->value;};
+                if($protocols->setting == "smtp_user"){$smtp_user = $protocols->value;};
+                if($protocols->setting == "smtp_pass"){$smtp_pass = decrypt($protocols->value);};
+                if($protocols->setting == "smtp_crypto"){$smtp_crypto = $protocols->value;};
+                if($protocols->setting == "mail_type"){$mail_type = $protocols->value;};
+                if($protocols->setting == "charset"){$charset = $protocols->value;};
+                if($protocols->setting == "word_wrap"){$word_wrap = $protocols->value;};
+                if($protocols->setting == "smtp_timeout"){$smtp_timeout = $protocols->value;};
+            }
+
+            return array(
+                'protocol' => $protocol, // 'mail', 'sendmail', or 'smtp'
+                'smtp_host' => $smtp_host, 
+                'smtp_port' => $smtp_port,
+                'smtp_user' => $smtp_user,
+                'smtp_pass' => $smtp_pass,
+                'smtp_crypto' => $smtp_crypto, //can be 'ssl' or 'tls' for example
+                'mailtype' => $mail_type, //plaintext 'text' mails or 'html'
+                'charset' => $charset,
+                'wordwrap' => $word_wrap,
+                'smtp_timeout' => $smtp_timeout //in seconds
+            );
         }
     }
 }

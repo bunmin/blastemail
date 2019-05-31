@@ -24,6 +24,8 @@
         <link rel="stylesheet" href="assets/plugins/email-multiple/email.multiple.css">
         <!-- Select2 -->
         <link rel="stylesheet" href="assets/bower_components/select2/dist/css/select2.min.css">
+        <!-- loader-css -->
+        <link rel="stylesheet" href="assets/plugins/loader-css/css/main.css">
 
         
 
@@ -43,6 +45,14 @@
         </style>
     </head>
     <body class="hold-transition skin-blue sidebar-mini">
+        <!-- <div id="loader-wrapper">
+			<div id="loader"></div>
+
+			<div class="loader-section section-left"></div>
+            <div class="loader-section section-right"></div>
+
+        </div> -->
+        
         <div class="wrapper">
             <!-- header logo: style can be found in header.less -->
             <?php include 'header.php'; ?>
@@ -75,9 +85,6 @@
             </footer>
         </div><!-- ./wrapper -->
 
-        
-
-
         <!-- jQuery 3 -->
         <script src="assets/bower_components/jquery/dist/jquery.min.js"></script>
         <!-- Bootstrap 3.3.7 -->
@@ -86,12 +93,16 @@
         <script src="assets/bower_components/fastclick/lib/fastclick.js"></script>
         <!-- AdminLTE App -->
         <script src="assets/dist/js/adminlte.min.js"></script>
+        <!-- loader-css -->
+        <script src="assets/plugins/loader-css/js/vendor/modernizr-2.6.2.min.js"></script>
 
         <!-- datatables -->
         <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" type="text/javascript"></script>
         <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
         <script type="text/javascript">
           $(document).ready(function() {
+              $('body').addClass('loaded');
+
               $('#table').DataTable();
 
               $("#show_hide_password a").on('click', function(event) {
@@ -107,34 +118,6 @@
                  }
              });
           } );
-        </script>
-
-        <!-- CK Editor -->
-        <script src="assets/bower_components/ckeditor/ckeditor.js"></script>
-        <!-- Bootstrap WYSIHTML5 -->
-        <script src="assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
-        <script>
-        $(function () {
-            // Replace the <textarea id="htmleditor"> with a CKEditor
-            // instance, using default configuration.
-            CKEDITOR.replace('htmleditor')
-            //bootstrap WYSIHTML5 - text editor
-            $('.textarea').wysihtml5()
-        })
-        </script>
-
-        <!-- js multple email input -->
-        <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
-        <script src="assets/plugins/email-multiple/jquery.email.multiple.js"></script>
-        <script>
-            $(document).ready(function($){
-                let data = [
-                ]
-                $("#emailmulti").email_multiple({
-                    data: data
-                    // reset: true
-                });
-            });
         </script>
 
         <!-- Select2 -->

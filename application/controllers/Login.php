@@ -8,16 +8,19 @@ class login extends CI_Controller
       parent::__construct();
       $this->load->library('form_validation');
       $this->load->model('app_model');
+      $this->load->helper('cryptomd5');
     }
 
     public function login()
     {
+        // echo encrypt($this->input->post('password'));
+        // die();
         if ($this->input->post() == null) {
             $this->load->view('login');
         } else {
             $username = $this->input->post('username');
-            $password = $this->input->post('password');
-            $cek_user = $this->db->query("SELECT * FROM user WHERE username='$username' and password=md5('$password') ");
+            $password = encrypt($this->input->post('password'));
+            $cek_user = $this->db->query("SELECT * FROM user WHERE username='$username' and password='$password' ");
             if ($cek_user->num_rows() == 1) {
                 foreach ($cek_user->result() as $row) {
                     $sess_data['id_user'] = $row->id_user;
