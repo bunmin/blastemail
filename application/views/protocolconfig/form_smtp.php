@@ -83,6 +83,6 @@ foreach ($detail_protocol as $protocols) {
         </div>
         <!-- /.box-body -->
         <div class="box-footer">
-        <button type="submit" class="btn btn-info"><i class="fa fa-save"></i> Save</button>
+        <button type="submit" class="btn btn-info"><i class="fa fa-save"></i> Save & Actived</button>
         </div>
     </div>

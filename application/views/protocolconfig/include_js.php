@@ -2,14 +2,15 @@
     $(document).ready(function() {
         $('select').select2({
             templateResult: formatState,
-            placeholder: 'Select a Protocol'
+            // placeholder: 'Select a Protocol'
         });
 
-        $(".protocol_config").hide();
+        // $(".protocol_config").hide();
 
         protocol_setting('<?php echo $protocol_option;?>');
 
         $("select.protocol").on('change',function(){
+            console.log("here");
             var selectedProtocol = $(this).children("option:selected").val();
             
             $.ajax({
@@ -17,8 +18,8 @@
                 url: "<?php echo site_url('protocolconfig/get_protocol_detail');?>",
                 data: "protocol="+selectedProtocol,
                 success: function (response) {
-                    // console.log (response);
-                    $(".smtp").html(response);
+                    protocol_setting(selectedProtocol);
+                    $("."+selectedProtocol).html(response);
                 },
             });
             
@@ -36,6 +37,7 @@
             $(".sendmail").show();
         } else {
             $(".protocol_config").hide();
+            // $(".smtp").show();
         }
     }
 

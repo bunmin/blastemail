@@ -26,6 +26,7 @@ $active_text = '<div color="red>test</div>'
             <div class="form-group">
                 <div class="col-sm-12">
                     <select class="form-control select2 protocol" style="width: 100%;" name="protocol_option">
+                        <option value="">== Select a Protocol ==</option>
                         <option value="mail" <?php if ($protocol_option == 'mail'){ echo 'selected onlyslave="yes"';}?>>Mail</option>
                         <option value="smtp" <?php if ($protocol_option == 'smtp'){ echo 'selected onlyslave="yes"';}?>>SMTP</option>
                         <option value="sendmail" <?php if ($protocol_option == 'sendmail'){ echo 'selected onlyslave="yes"';}?>>Sendmail</option>

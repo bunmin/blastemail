@@ -41,8 +41,31 @@
                 $orig.val(email.slice(0, -1))
             });
 
+            $element.focusout(function (e) {
+                $element.css('border', '');
+
+                let getValue = $.trim($element.val());
+                if (/^[a-z+0-9._-]+@[a-z0-9._-]+\.[a-z]{2,6}$/.test(getValue)){
+                    $('.all-mail').append('<span class="email-ids">' + getValue + '<span class="cancel-email">x</span></span>');
+                    $element.val('');
+
+                    email += getValue + ';'
+                } else {
+                    $element.css('border', '1px solid red')
+                }
+
+                $orig.val(email.slice(0, -1))
+                // console.log("email val:"+email);
+            });
+
             $(document).on('click','.cancel-email',function(){
                 $(this).parent().remove();
+                var a = $(this).parent();
+                var aa = $(a[0].firstChild);
+
+                email = email.replace($(aa[0]).text()+";","");
+                $orig.val(email.slice(0, -1))
+                
             });
 
             if(settings.data){
