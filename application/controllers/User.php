@@ -9,6 +9,8 @@ class user extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->db = $this->load->database('migrate', TRUE);
+        
         $this->load->model('user_model');
         $this->load->library('form_validation');
 

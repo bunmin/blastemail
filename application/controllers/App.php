@@ -6,6 +6,8 @@ class app extends CI_Controller
     function __construct()
     {
       parent::__construct();
+      $this->db = $this->load->database('migrate', TRUE);
+
       $this->load->library('form_validation');
       $this->load->model('app_model');
       $this->load->model('emailgroup_model');
