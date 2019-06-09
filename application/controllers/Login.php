@@ -10,7 +10,7 @@ class login extends CI_Controller
 
       $this->load->library('form_validation');
       $this->load->model('app_model');
-      $this->load->helper('cryptomd5');
+      $this->load->helper('Cryptomd5');
     }
 
     public function login()

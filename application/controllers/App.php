@@ -13,7 +13,7 @@ class app extends CI_Controller
       $this->load->model('emailgroup_model');
       $this->load->model('protocolconfig_model');
       $this->load->helper('url');
-      $this->load->helper('cryptomd5');
+      $this->load->helper('Cryptomd5');
 
       if ($this->session->userdata('username') == "") {
         redirect('login/login');
