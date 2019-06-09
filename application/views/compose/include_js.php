@@ -23,5 +23,34 @@
                 data: data
                 // reset: true
             });
+
+            $(".link-remove").hide();
+            var nexthtml = 1;
+            var htmlnumber = 0;
+            $(".add-more").click(function(){
+                nexthtml = nexthtml + 1;
+                htmlnumber = htmlnumber + 1;
+                // var html = $(".copy").html();
+                var html = '<div class="form-group control-group after-add-more'+nexthtml+'" style="margin-top:10px">' +
+                    '<label for="url'+htmlnumber+'For" class="col-sm-2 control-label">Url '+htmlnumber+' </label>' +
+                    '<div class="col-sm-10">' +
+                        '<input type="text" name="url'+htmlnumber+'" class="form-control" id="url'+htmlnumber+'For" placeholder="parameter code : url'+htmlnumber+'">' +
+                        '<?php echo form_error('url'+htmlnumber+'') ?>' +
+                    '</div>'+
+                '</div>';
+                $(".after-add-more"+(nexthtml-1)).after(html);
+                $(".link-remove").show();
+                $("#url_count").val(htmlnumber);
+            });
+
+            $("body").on("click",".remove",function(){ 
+                $(".after-add-more"+(nexthtml)).remove();
+                nexthtml = nexthtml - 1;
+                htmlnumber = htmlnumber - 1;
+                $("#url_count").val(htmlnumber);
+                if (htmlnumber == 0){
+                    $(".link-remove").hide();
+                }
+            });
         });
     </script>

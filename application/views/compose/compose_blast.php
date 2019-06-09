@@ -62,11 +62,24 @@
                     <?php echo form_error('subject') ?>
                 </div>
             </div>
+            <div class="form-group after-add-more1">
+                <label for="url1For" class="col-sm-2 control-label">Insert Link</label>
+                <div class="col-sm-9">
+                        <button class="btn btn-success add-more" type="button"><i class="glyphicon glyphicon-plus"></i> Add</button>
+                        <button class="btn btn-danger remove link-remove" type="button" style="margin-left:10px"><i class="glyphicon glyphicon-remove"></i> Remove</button>
+                        <input type="hidden" name="url_count" id="url_count">   
+                </div>
+            </div>
             <div class="form-group">
                 <label for="subjectFor" class="col-sm-2 control-label">Message</label>
                 <div class="box-body pad col-sm-10">
                     <textarea id="editor1" name="htmleditor" rows="10" cols="80">
-                        Enter Message Here, can include html format
+                        Enter Message Here, can include html format.
+                        <br><br>
+                        Include log for link or button click, how to use:<br>
+                        1. click Add button on Insert Link in above.<br>
+                        2. insert your link that you want record, example : https://blastemail.com.<br>
+                        3. on the Message, insert link with the code written on the Insert Link placeholder, inside "href" element, example : <a href="url1">url1</a>. (click Source button for detail)<br>
                     </textarea>
                     <?php echo form_error('htmleditor') ?>
                 </div>

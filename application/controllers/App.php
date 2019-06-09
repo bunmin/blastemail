@@ -57,12 +57,40 @@ class app extends CI_Controller
         $this->form_validation->set_rules('htmleditor', 'Message', 'trim|required');
         $this->form_validation->set_rules('sender_email', 'Sender Email', 'trim|required');
         $this->form_validation->set_rules('sender_name', 'Sender Name', 'trim');
+        $this->form_validation->set_rules('url_count', '', 'trim');
         $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
 
 
         if ($this->form_validation->run() == false) {
             $this->index();
         } else {
+
+            $getmessage = $this->input->post('htmleditor');
+            
+            $url_count = $this->input->post('url_count', true);
+            if ($url_count > 0) {
+                $url_count = $url_count + 1;
+                for ($i=1; $i < $url_count; $i++) { 
+                    $url = $this->input->post('url'.$i, true);
+
+                    $uuid = $this->db->query("SELECT uuid() uuid")->row();
+                    $uuid = $uuid->uuid;
+
+                    $data = array(
+                        'uuid' => $uuid,
+                        'url' => $url,
+                    );
+    
+                    $this->app_model->insert_url_redirect($data);
+
+                    $newurl = base_url()."client_action/action/click_/{message_id}/".$uuid;
+
+                    $getmessage = str_replace("url".$i,$newurl,$getmessage);
+                }
+            }
+            
+
+
             $config = $this->email_config();
             $this->load->library('email',$config);
 
@@ -71,7 +99,6 @@ class app extends CI_Controller
             $cc = $this->input->post('cc', true);
             $bcc = $this->input->post('bcc', true);
             $subject = $this->input->post('subject', true);
-            $getmessage = $this->input->post('htmleditor');
 
 
             $receivers = explode(";", $this->input->post('receiver', true));
@@ -80,8 +107,10 @@ class app extends CI_Controller
                 $uuid = $this->db->query("SELECT uuid() uuid")->row();
                 $uuid = $uuid->uuid;
 
+                $getmessage = str_replace("{message_id}",$uuid,$getmessage);
+
                 $message = "";
-                $message = $getmessage.'<img src="'.base_url().'login/email_read/'.$uuid.'" width="1" height="1">';
+                $message = $getmessage.'<img src="'.base_url().'client_action/action/read/'.$uuid.'" width="1" height="1">';
 
                 $this->email->set_newline("\r\n");
                 $this->email->from($from,$fromname);
@@ -128,12 +157,38 @@ class app extends CI_Controller
         $this->form_validation->set_rules('htmleditor', 'Message', 'trim|required');
         $this->form_validation->set_rules('sender_email', 'Sender Email', 'trim|required');
         $this->form_validation->set_rules('sender_name', 'Sender Name', 'trim');
+        $this->form_validation->set_rules('url_count', '', 'trim');
         $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
 
 
         if ($this->form_validation->run() == false) {
             $this->blastemail();
         } else {
+
+            $getmessage = $this->input->post('htmleditor');
+            
+            $url_count = $this->input->post('url_count', true);
+            if ($url_count > 0) {
+                $url_count = $url_count + 1;
+                for ($i=1; $i < $url_count; $i++) { 
+                    $url = $this->input->post('url'.$i, true);
+
+                    $uuid = $this->db->query("SELECT uuid() uuid")->row();
+                    $uuid = $uuid->uuid;
+
+                    $data = array(
+                        'uuid' => $uuid,
+                        'url' => $url,
+                    );
+    
+                    $this->app_model->insert_url_redirect($data);
+
+                    $newurl = base_url()."client_action/action/click_/{message_id}/".$uuid;
+
+                    $getmessage = str_replace("url".$i,$newurl,$getmessage);
+                }
+            }
+
             $config = $this->email_config();
             $this->load->library('email',$config);
 
@@ -142,8 +197,8 @@ class app extends CI_Controller
             $cc = $this->input->post('cc', true);
             $bcc = $this->input->post('bcc', true);
             $subject = $this->input->post('subject', true);
-            $getmessage = $this->input->post('htmleditor');
             $group_id = $this->input->post('group_email', true);
+
 
             $email_lists = $this->emailgroup_model->get_group_detail_by_id($group_id);
             $count_email = 0;
@@ -154,8 +209,10 @@ class app extends CI_Controller
                 $uuid = $this->db->query("SELECT uuid() uuid")->row();
                 $uuid = $uuid->uuid;
 
+                $getmessage = str_replace("{message_id}",$uuid,$getmessage);
+
                 $message = "";
-                $message = $getmessage.'<img src="'.base_url().'login/email_read/'.$uuid.'" width="1" height="1">';
+                $message = $getmessage.'<img src="'.base_url().'client_action/action/read/'.$uuid.'" width="1" height="1">';
 
                 $this->email->set_newline("\r\n");
                 $this->email->from($from,$fromname);

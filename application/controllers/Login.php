@@ -54,8 +54,7 @@ class login extends CI_Controller
     {
         $get_date = $this->app_model->get_log_by_id($uuid);
         if (is_null($get_date->read_dt)) {
-            $read = $this->app_model->update_read($uuid);
+             $read = $this->app_model->update_read($uuid);
         }
-        die();
     }
 }
