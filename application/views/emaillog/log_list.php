@@ -36,7 +36,7 @@
                                 <td><?php echo $logs->send_dt ?></td>
                                 <td><?php echo $logs->read_dt ?>
                                   <?php if ($logs->read_dt){?>
-                                    <a href="#" class="pull-right" data-toggle="modal" data-target="#modal-default" onclick="load_detail('<?php echo $logs->uuid; ?>','<?php echo $logs->subject ?>')">
+                                    <a href="#" class="pull-right" data-toggle="modal" data-target="#modal-default" onclick="load_detail('<?php echo $logs->uuid; ?>','<?php echo $logs->receiver ?> : <?php echo $logs->subject ?>')">
                                       <i class="fa fa-eye" title-"Detail"></i>
                                     </a>
                                   <?php }?>
