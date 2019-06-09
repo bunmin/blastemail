@@ -39,9 +39,9 @@ class app_model extends CI_Model
         $this->db->query("UPDATE email_log set read_dt = ? where uuid = ?", array($date_action,$uuid));
     }
 
-    function update_emaillog_detail($action = '',$uuid, $date_action)
+    function update_emaillog_detail($action = '',$uuid, $date_action, $description = '')
     {
-        $this->db->query("INSERT email_log_detail (email_log_uuid, log_action, excuted_date) values (?,?,?) ", array($uuid,$action,$date_action));
+        $this->db->query("INSERT email_log_detail (email_log_uuid, log_action, excuted_date,description) values (?,?,?) ", array($uuid,$action,$date_action,$description));
     }
 
     function insert_url_redirect($data)
