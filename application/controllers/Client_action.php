@@ -18,6 +18,7 @@ class client_action extends CI_Controller
         
         if ($action == "read") {
             $read_action = $this->app_model->update_emaillog($date_action,$uuid);
+            $custom_action = $this->app_model->update_emaillog_detail($action,$uuid,$date_action);
         };
 
         // if (!$action == "") {
