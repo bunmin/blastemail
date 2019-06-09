@@ -21,10 +21,10 @@
                         foreach ($email_log_detail as $details) {
                         ?>
                         <tr>
-                            <td width="80px"><?php echo ++$no?></td>
-                            <td width="80px"><?php echo $details->log_action;?></td>
-                            <td width="80px"><?php echo $details->excuted_date;?></td>
-                            <td width="80px"><?php echo $details->description;?></td>
+                            <td width="10%"><?php echo ++$no?></td>
+                            <td width="30%"><?php echo $details->log_action;?></td>
+                            <td width="30%"><?php echo $details->excuted_date;?></td>
+                            <td width="40%"><?php echo $details->description;?></td>
                         </tr>
                         <?php
                         }
