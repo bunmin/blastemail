@@ -23,9 +23,21 @@ class emaillog extends CI_Controller {
 
         $data = array(
             'konten' => 'emaillog/log_list',
+            'footerplus1' => 'emaillog/include_js',
             'judul' => 'Email Log List',
             'log_data' => $log_list,
         );
         $this->load->view('v_index', $data);
+    }
+
+    public function get_email_log_detail() {
+        $uuid = $this->input->post('uuid', true);
+        $log_detail = $this->emaillog_model->get_log_detail_by_id($uuid);
+
+        $data = array(
+            'email_log_detail' => $log_detail,
+        );
+
+        $this->load->view('emaillog/modal', $data);
     }
 }

@@ -83,7 +83,7 @@ class app extends CI_Controller
     
                     $this->app_model->insert_url_redirect($data);
 
-                    $newurl = base_url()."client_action/action/click_/{message_id}/".$uuid;
+                    $newurl = base_url()."client_action/action/click/{message_id}/".$uuid;
 
                     $getmessage = str_replace("url".$i,$newurl,$getmessage);
                 }
@@ -183,7 +183,7 @@ class app extends CI_Controller
     
                     $this->app_model->insert_url_redirect($data);
 
-                    $newurl = base_url()."client_action/action/click_/{message_id}/".$uuid;
+                    $newurl = base_url()."client_action/action/click/{message_id}/".$uuid;
 
                     $getmessage = str_replace("url".$i,$newurl,$getmessage);
                 }

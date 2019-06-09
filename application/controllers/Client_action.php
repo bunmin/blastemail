@@ -25,7 +25,7 @@ class client_action extends CI_Controller
         //     $custom_action = $this->app_model->update_emaillog_detail($action,$uuid,$date_action);
         // };
 
-        if (strpos($action, 'click_') !== false) {
+        if (strpos($action, 'click') !== false) {
             $url_redirect = $this->app_model->get_urlredirect_by_id($urlid);
             $url_redirect = $url_redirect->url;
 

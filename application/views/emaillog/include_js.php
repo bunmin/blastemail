@@ -3,15 +3,15 @@
             //     $('#tableinmodal').DataTable();
             // });
 
-            function load_detail(uuid,title)
+            function load_detail(uuid,subject)
             {
                 $.ajax({
                     type: "POST",
-                    url: "<?php echo site_url('emailgroup/get_group_detail');?>",
+                    url: "<?php echo site_url('emaillog/get_email_log_detail');?>",
                     data: "uuid="+uuid,
                     success: function (response) {
                         $(".modal_show").html(response);
-                        $(".modal-title").html('<b>'+title+'</b>');
+                        $(".modal-title").html('<b>'+subject+'</b>');
                         $('#tableinmodal').DataTable();
                     },
                 });

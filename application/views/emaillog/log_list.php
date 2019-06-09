@@ -34,7 +34,13 @@
                                 <td><?php echo $logs->subject ?></td>
                                 <td><?php echo $logs->status ?></td>
                                 <td><?php echo $logs->send_dt ?></td>
-                                <td><?php echo $logs->read_dt ?></td>
+                                <td><?php echo $logs->read_dt ?>
+                                  <?php if ($logs->read_dt){?>
+                                    <a href="#" class="pull-right" data-toggle="modal" data-target="#modal-default" onclick="load_detail('<?php echo $logs->uuid; ?>','<?php echo $logs->subject ?>')">
+                                      <i class="fa fa-eye" title-"Detail"></i>
+                                    </a>
+                                  <?php }?>
+                                </td>
                             </tr>
                             <?php
                             }
@@ -46,6 +52,7 @@
                 </div>
                 <!-- /.box-body -->
               </div>
-              <!-- <div class="modal_show">
-              </div> -->
               <!-- /.box -->
+              <div class="modal fade modal_show" id="modal-default">
+                    <?php include 'modal.php'; ?>
+              </div>

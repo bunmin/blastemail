@@ -20,4 +20,11 @@ class emailLog_model extends CI_Model
         $this->db->order_by($this->order);
         return $this->db->get($this->table)->result();
     }
+
+    function get_log_detail_by_id($uuid)
+    {
+        $this->db->order_by('detail_id asc');
+        $this->db->where('email_log_uuid',$uuid);
+        return $this->db->get('email_log_detail')->result();
+    }
 }
