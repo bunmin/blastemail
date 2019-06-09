@@ -45,13 +45,13 @@
         </style>
     </head>
     <body class="hold-transition skin-blue sidebar-mini">
-        <!-- <div id="loader-wrapper">
+        <div id="loader-wrapper">
 			<div id="loader"></div>
 
 			<div class="loader-section section-left"></div>
             <div class="loader-section section-right"></div>
 
-        </div> -->
+        </div>
         
         <div class="wrapper">
             <!-- header logo: style can be found in header.less -->
