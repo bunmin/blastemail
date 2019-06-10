@@ -67,8 +67,8 @@ foreach ($detail_protocol as $protocols) {
                 <label for="wordwrap" class="col-sm-2 control-label">Word Wrap</label>
                 <div class="col-sm-10">
                     <select class="form-control select2" style="width: 100%;" name="word_wrap" id="wordwrap" value="<?php echo $word_wrap;?>">
-                        <option value="false">No</option>
-                        <option value="true">Yes</option>
+                        <option value="false" <?php if($word_wrap==false){echo "selected";}?>>No</option>
+                        <option value="true" <?php if($word_wrap==true){echo "selected";}?>>Yes</option>
                     </select>
                     <?php echo form_error('word_wrap') ?>
                 </div>
