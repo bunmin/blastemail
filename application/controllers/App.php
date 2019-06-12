@@ -107,10 +107,11 @@ class app extends CI_Controller
                 $uuid = $this->db->query("SELECT uuid() uuid")->row();
                 $uuid = $uuid->uuid;
 
-                $getmessage = str_replace("{message_id}",$uuid,$getmessage);
+                $newmessage = "";
+                $newmessage = str_replace("{message_id}",$uuid,$getmessage);
 
                 $message = "";
-                $message = $getmessage.'<img src="'.base_url().'client_action/action/read/'.$uuid.'" width="1" height="1">';
+                $message = $newmessage.'<img src="'.base_url().'client_action/action/read/'.$uuid.'" width="1" height="1">';
 
                 $this->email->set_newline("\r\n");
                 $this->email->from($from,$fromname);
@@ -208,11 +209,12 @@ class app extends CI_Controller
 
                 $uuid = $this->db->query("SELECT uuid() uuid")->row();
                 $uuid = $uuid->uuid;
-
-                $getmessage = str_replace("{message_id}",$uuid,$getmessage);
+                
+                $newmessage = "";
+                $newmessage = str_replace("{message_id}",$uuid,$getmessage);
 
                 $message = "";
-                $message = $getmessage.'<img src="'.base_url().'client_action/action/read/'.$uuid.'" width="1" height="1">';
+                $message = $newmessage.'<img src="'.base_url().'client_action/action/read/'.$uuid.'" width="1" height="1">';
 
                 $this->email->set_newline("\r\n");
                 $this->email->from($from,$fromname);
