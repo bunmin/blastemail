@@ -58,6 +58,7 @@ class app extends CI_Controller
         $this->form_validation->set_rules('sender_email', 'Sender Email', 'trim|required');
         $this->form_validation->set_rules('sender_name', 'Sender Name', 'trim');
         $this->form_validation->set_rules('url_count', '', 'trim');
+        $this->form_validation->set_rules('remarks', '', 'trim');
         $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
 
 
@@ -99,6 +100,7 @@ class app extends CI_Controller
             $cc = $this->input->post('cc', true);
             $bcc = $this->input->post('bcc', true);
             $subject = $this->input->post('subject', true);
+            $remarks = $this->input->post('remarks', true);
 
 
             $receivers = explode(";", $this->input->post('receiver', true));
@@ -137,6 +139,9 @@ class app extends CI_Controller
                     'subject' => $subject,
                     'message' => $message,
                     'status' => $status,
+                    'remarks' => $remarks,
+                    'sender_name' => $fromname,
+                    'sender_email' => $from,
                 );
 
                 $this->app_model->insert_email_single($data);
@@ -159,6 +164,7 @@ class app extends CI_Controller
         $this->form_validation->set_rules('sender_email', 'Sender Email', 'trim|required');
         $this->form_validation->set_rules('sender_name', 'Sender Name', 'trim');
         $this->form_validation->set_rules('url_count', '', 'trim');
+        $this->form_validation->set_rules('remarks', '', 'trim');
         $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
 
 
@@ -199,6 +205,11 @@ class app extends CI_Controller
             $bcc = $this->input->post('bcc', true);
             $subject = $this->input->post('subject', true);
             $group_id = $this->input->post('group_email', true);
+            $remarks = $this->input->post('remarks', true);
+            if ($remarks == "") {
+                $email_group = $this->emailgroup_model->get_group_by_id($group_id);
+                $remarks = "Email group name : ".$email_group[0]->group_name;
+            }
 
 
             $email_lists = $this->emailgroup_model->get_group_detail_by_id($group_id);
@@ -238,6 +249,9 @@ class app extends CI_Controller
                     'subject' => $subject,
                     'message' => $message,
                     'status' => $status,
+                    'remarks' => $remarks,
+                    'sender_name' => $fromname,
+                    'sender_email' => $from,
                 );
 
                 $this->app_model->insert_email_single($data);

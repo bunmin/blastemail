@@ -64,7 +64,6 @@
             <div class="form-group">
                 <label for="messageFor" class="col-sm-2 control-label">Message </label>
                 <div class="box-body pad col-sm-10">
-                    <?php echo form_error('htmleditor') ?>
                     <textarea id="message" name="htmleditor" rows="10" cols="80">
                         Enter Message Here, can include html format.
                         <br><br>
@@ -74,6 +73,13 @@
                         3. on the Message, insert link with the code written on the Insert Link placeholder, inside "href" element, example : <a href="url1">url1</a>. (click Source button for detail)<br>
                     </textarea>
                     <?php echo form_error('htmleditor') ?>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="remarksFor" class="col-sm-2 control-label">Remark </label>
+                <div class="box-body pad col-sm-10">
+                    <textarea id="remarks" name="remarks" rows="5" cols="80" class="form-control"></textarea>
+                    <?php echo form_error('remarks') ?>
                 </div>
             </div>
         </div>

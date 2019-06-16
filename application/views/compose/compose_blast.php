@@ -84,7 +84,13 @@
                     <?php echo form_error('htmleditor') ?>
                 </div>
             </div>
-            
+            <div class="form-group">
+                <label for="remarksFor" class="col-sm-2 control-label">Remark </label>
+                <div class="box-body pad col-sm-10">
+                    <textarea id="remarks" name="remarks" rows="5" cols="80" class="form-control"></textarea>
+                    <?php echo form_error('remarks') ?>
+                </div>
+            </div>
         </div>
         <!-- /.box-body -->
         <div class="box-footer">
