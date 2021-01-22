@@ -71,7 +71,7 @@ class protocolconfig extends CI_Controller {
                     $smtp_host = $this->input->post('smtp_host', true);
                     $smtp_port = $this->input->post('smtp_port', true);
                     $smtp_user = $this->input->post('smtp_user', true);
-                    $smtp_pass = encrypt($this->input->post('smtp_pass', true));
+                    $smtp_pass = md5($this->input->post('smtp_pass', true));
                     $smtp_crypto = $this->input->post('smtp_crypto', true);
                     $mail_type = $this->input->post('mail_type', true);
                     $charset = $this->input->post('charset', true);
