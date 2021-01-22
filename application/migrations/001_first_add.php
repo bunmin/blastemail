@@ -67,6 +67,7 @@ class Migration_first_add extends CI_Migration {
                         PRIMARY KEY (`id_user`)
                 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=latin1;");
 
+                //password is "admin"
                 $this->db->query("
                 INSERT INTO `user` (`id_user`, `nama`, `username`, `password`) VALUES
                 (1, 'Administrator', 'admin', 'IlMtGDaNXT7MuHA+CftTYeM4zmEOOeST7z7pH7xBAPw=');");
