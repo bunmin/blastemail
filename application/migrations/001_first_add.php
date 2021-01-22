@@ -70,7 +70,7 @@ class Migration_first_add extends CI_Migration {
                 //password is "admin"
                 $this->db->query("
                 INSERT INTO `user` (`id_user`, `nama`, `username`, `password`) VALUES
-                (1, 'Administrator', 'admin', 'IlMtGDaNXT7MuHA+CftTYeM4zmEOOeST7z7pH7xBAPw=');");
+                (1, 'Administrator', 'admin', '21232f297a57a5a743894a0e4a801fc3');");
 
                 $this->db->query("DROP TRIGGER IF EXISTS `before_insert_email_log`;");
 

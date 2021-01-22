@@ -10,7 +10,6 @@ class login extends CI_Controller
 
       $this->load->library('form_validation');
       $this->load->model('app_model');
-      $this->load->helper('Cryptomd5');
     }
 
     public function login()
@@ -19,7 +18,7 @@ class login extends CI_Controller
             $this->load->view('login');
         } else {
             $username = $this->input->post('username');
-            $password = encrypt($this->input->post('password'));
+            $password = md5($this->input->post('password'));
             $cek_user = $this->db->query("SELECT * FROM user WHERE username=? and password=?",array($username,$password));
             if ($cek_user->num_rows() == 1) {
                 foreach ($cek_user->result() as $row) {

@@ -13,7 +13,6 @@ class app extends CI_Controller
       $this->load->model('emailgroup_model');
       $this->load->model('protocolconfig_model');
       $this->load->helper('url');
-      $this->load->helper('Cryptomd5');
 
       if ($this->session->userdata('username') == "") {
         redirect('login/login');
@@ -337,9 +336,9 @@ class app extends CI_Controller
 
             if ($level == "admin") {
               $cek = $this->db->query("SELECT password FROM user where id_user='$id'")->row();
-              if ($cek->password == encrypt($pass_lama)) {
+              if ($cek->password == md5($pass_lama)) {
                   $data = array(
-                      'password' => encrypt($pass_baru)
+                      'password' => md5($pass_baru)
                   );
                   $this->db->where('id_user', $id);
                   $this->db->update('user', $data);
