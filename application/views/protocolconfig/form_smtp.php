@@ -3,7 +3,7 @@ foreach ($detail_protocol as $protocols) {
     if($protocols->setting == "smtp_host"){$smtp_host = $protocols->value;};
     if($protocols->setting == "smtp_port"){$smtp_port = $protocols->value;};
     if($protocols->setting == "smtp_user"){$smtp_user = $protocols->value;};
-    if($protocols->setting == "smtp_pass"){$smtp_pass = decrypt($protocols->value);};
+    if($protocols->setting == "smtp_pass"){$smtp_pass = "hidden";};
     if($protocols->setting == "smtp_crypto"){$smtp_crypto = $protocols->value;};
     if($protocols->setting == "mail_type"){$mail_type = $protocols->value;};
     if($protocols->setting == "charset"){$charset = $protocols->value;};
