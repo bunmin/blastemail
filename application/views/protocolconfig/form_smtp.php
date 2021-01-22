@@ -1,9 +1,14 @@
 <?php
+$openssl_ciphering = config_item('openssl_crypt_ciphering');
+$openssl_options = config_item('openssl_crypt_options');
+$openssl_encryption_iv = config_item('openssl_crypt_encryption_iv');
+$openssl_encryption_key = config_item('openssl_crypt_encryption_key');
+
 foreach ($detail_protocol as $protocols) {
     if($protocols->setting == "smtp_host"){$smtp_host = $protocols->value;};
     if($protocols->setting == "smtp_port"){$smtp_port = $protocols->value;};
     if($protocols->setting == "smtp_user"){$smtp_user = $protocols->value;};
-    if($protocols->setting == "smtp_pass"){$smtp_pass = "hidden";};
+    if($protocols->setting == "smtp_pass"){$smtp_pass = openssl_decrypt($protocols->value,$openssl_ciphering,$openssl_encryption_key,$openssl_options,$openssl_encryption_iv);};
     if($protocols->setting == "smtp_crypto"){$smtp_crypto = $protocols->value;};
     if($protocols->setting == "mail_type"){$mail_type = $protocols->value;};
     if($protocols->setting == "charset"){$charset = $protocols->value;};

@@ -522,3 +522,9 @@ $config['rewrite_short_tags'] = FALSE;
 | Array:		array('10.0.1.200', '192.168.5.0/24')
 */
 $config['proxy_ips'] = '';
+
+
+$config['openssl_crypt_ciphering']	= 'AES-128-CTR';
+$config['openssl_crypt_options']	= 0;
+$config['openssl_crypt_encryption_iv']	= 'lorem12345678';
+$config['openssl_crypt_encryption_key']	= 'bunmincokis';

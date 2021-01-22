@@ -10,7 +10,6 @@ class protocolconfig extends CI_Controller {
 
         $this->load->helper('security');
         $this->load->helper('url');
-        $this->load->helper('cryptomd5');
         $this->load->library('form_validation');
         $this->load->model('protocolconfig_model');
 
@@ -68,10 +67,16 @@ class protocolconfig extends CI_Controller {
                 if ($this->form_validation->run() == false) {
                     $this->index();
                 } else {
+                    $openssl_ciphering = config_item('openssl_crypt_ciphering');
+                    $openssl_options = config_item('openssl_crypt_options');
+                    $openssl_encryption_iv = config_item('openssl_crypt_encryption_iv');
+                    $openssl_encryption_key = config_item('openssl_crypt_encryption_key');
+
                     $smtp_host = $this->input->post('smtp_host', true);
                     $smtp_port = $this->input->post('smtp_port', true);
                     $smtp_user = $this->input->post('smtp_user', true);
-                    $smtp_pass = md5($this->input->post('smtp_pass', true));
+                    $smtp_pass = openssl_encrypt($this->input->post('smtp_pass', true),$openssl_ciphering,$openssl_encryption_key,$openssl_options,$openssl_encryption_iv);
+
                     $smtp_crypto = $this->input->post('smtp_crypto', true);
                     $mail_type = $this->input->post('mail_type', true);
                     $charset = $this->input->post('charset', true);
