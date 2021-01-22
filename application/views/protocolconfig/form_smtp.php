@@ -17,28 +17,28 @@ foreach ($detail_protocol as $protocols) {
             <div class="form-group">
                 <label for="smtphost" class="col-sm-2 control-label">SMTP Host</label>
                 <div class="col-sm-10">
-                    <input type="text" id="smtphost" class="form-control" placeholder="SMTP Host" name="smtp_host" value="<?php echo $smtp_host;?>">
+                    <input type="text" id="smtphost" class="form-control" placeholder="SMTP Host" name="smtp_host" value="<?php echo $smtp_host;?>" required>
                     <?php echo form_error('smtp_host') ?>
                 </div>
             </div>
             <div class="form-group">
                 <label for="smtpport" class="col-sm-2 control-label">SMTP Port</label>
                 <div class="col-sm-10">
-                    <input type="text" id="smtpport" class="form-control" placeholder="SMTP Port" name="smtp_port" onkeypress="return isNumberKey(event)" value="<?php echo $smtp_port;?>">
+                    <input type="text" id="smtpport" class="form-control" placeholder="SMTP Port" name="smtp_port" onkeypress="return isNumberKey(event)" value="<?php echo $smtp_port;?>" required>
                     <?php echo form_error('smtp_port') ?>
                 </div>
             </div>
             <div class="form-group">
                 <label for="smtpuser" class="col-sm-2 control-label">SMTP User</label>
                 <div class="col-sm-10">
-                    <input type="text" id="smtpuser" class="form-control" placeholder="SMTP User" name="smtp_user" value="<?php echo $smtp_user;?>">
+                    <input type="text" id="smtpuser" class="form-control" placeholder="SMTP User" name="smtp_user" value="<?php echo $smtp_user;?>" required>
                     <?php echo form_error('smtp_user') ?>
                 </div>
             </div>
             <div class="form-group">
                 <label for="smtppass" class="col-sm-2 control-label">SMTP Password</label>
                 <div class="col-sm-10">
-                    <input type="password" id="smtppass" class="form-control" placeholder="SMTP Password" name="smtp_pass" value="<?php echo $smtp_pass;?>">
+                    <input type="password" id="smtppass" class="form-control" placeholder="SMTP Password" name="smtp_pass" value="<?php echo $smtp_pass;?>" required>
                     <?php echo form_error('smtp_pass') ?>
                 </div>
             </div>
@@ -52,14 +52,14 @@ foreach ($detail_protocol as $protocols) {
             <div class="form-group">
                 <label for="mailtype" class="col-sm-2 control-label">Mail Type</label>
                 <div class="col-sm-10">
-                    <input type="text" id="mailtype" class="form-control" placeholder="'text' or 'html'" name="mail_type" value="<?php echo $mail_type;?>">
+                    <input type="text" id="mailtype" class="form-control" placeholder="'text' or 'html'" name="mail_type" value="<?php echo $mail_type;?>" required>
                     <?php echo form_error('mail_type') ?>
                 </div>
             </div>
             <div class="form-group">
                 <label for="charset" class="col-sm-2 control-label">Charset</label>
                 <div class="col-sm-10">
-                    <input type="text" id="charset" class="form-control" placeholder="Charset" name="charset" value="<?php echo $charset;?>">
+                    <input type="text" id="charset" class="form-control" placeholder="UTF-8" name="charset" value="<?php echo $charset;?>" required>
                     <?php echo form_error('charset') ?>
                 </div>
             </div>
@@ -76,7 +76,7 @@ foreach ($detail_protocol as $protocols) {
             <div class="form-group">
                 <label for="smtptimeout" class="col-sm-2 control-label">SMTP Timeout</label>
                 <div class="col-sm-10">
-                    <input type="text" id="smtptimeout" class="form-control" placeholder="SMTP Timeout" name="smtp_timeout" onkeypress="return isNumberKey(event)" value="<?php echo $smtp_timeout;?>">
+                    <input type="text" id="smtptimeout" class="form-control" placeholder="SMTP Timeout" name="smtp_timeout" onkeypress="return isNumberKey(event)" value="<?php echo $smtp_timeout;?>" required>
                     <?php echo form_error('smtp_timeout') ?>
                 </div>
             </div>

@@ -102,7 +102,6 @@ class app extends CI_Controller
             $subject = $this->input->post('subject', true);
             $remarks = $this->input->post('remarks', true);
 
-
             $receivers = explode(";", $this->input->post('receiver', true));
             $count_email = 0;
             foreach ($receivers as $receiver) {
